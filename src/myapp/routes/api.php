@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\ParkingLotController;
+use App\Http\Controllers\ParkingSpotController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/parking-lots', [ParkingLotController::class, 'index']);
+Route::get('/parking-lots/{parking_lot}', [ParkingLotController::class, 'show']);
+
+Route::get('/parking-lots/{parking_lot}/parking-spots', [ParkingSpotController::class, 'index']);
+Route::post('/parking-lots/{parking_lot}/parking-spots', [ParkingSpotController::class, 'store']);
+Route::patch('/parking-lots/{parking_lot}/parking-spots', [ParkingSpotController::class, 'update']);
